@@ -127,18 +127,23 @@
             bool isEqual = CheckEqual(userNum1, userNum2);
             Console.WriteLine("If equal, print \"True\"; if NOT, print \"False\":");
             Console.WriteLine(isEqual);
+            //----------------------------------------------------         
+            string userNum;
+            int parsedNum;
+            bool isInteger;
+            
+            do 
+            {
+                Console.WriteLine("\nEnter an integer number:");
+                userNum = Console.ReadLine();
+                isInteger = int.TryParse(userNum, out parsedNum);
+                if (!isInteger) { Console.WriteLine($"{userNum} is not an integer number."); }
+            } while (!isInteger);
+            
+            CheckEvenOrOdd(parsedNum);
             //----------------------------------------------------
 
-            Console.WriteLine("\nEnter an integer number:");
-            int userNumber = int.Parse(Console.ReadLine());
-
-            CheckEvenOrOdd(userNumber);
-            //----------------------------------------------------
-
-            Console.WriteLine("\nEnter an integer number:");
-            int userNum = int.Parse(Console.ReadLine());
-
-            CheckPosOrNeg(userNum);
+            CheckPosOrNeg(parsedNum);
 
             //----------------------------------------------------
             //If the string can not be converted to an integer, then
@@ -147,12 +152,17 @@
 
             bool isParsed;
             int parsedAge;
-            Console.WriteLine("\nEnter your age:");
-            string inputAge = Console.ReadLine();
-            isParsed = int.TryParse(inputAge, out parsedAge);
+            string inputAge;
 
-            Console.WriteLine($"Boolean value to determine if \"{inputAge}\" is parsed as an integer: {isParsed}");
-            if (isParsed) { CanVote(parsedAge); }
+            do
+            {
+                Console.WriteLine("\nEnter your age in a whole number:");
+                inputAge = Console.ReadLine();
+                isParsed = int.TryParse(inputAge, out parsedAge);
+                if (!isParsed) { Console.WriteLine($"{inputAge} is not a whole number."); }
+            } while (!isParsed);
+
+            CanVote(parsedAge);
 
             //----------------------------------------------------
             Console.WriteLine("\nEnter an integer number:");
